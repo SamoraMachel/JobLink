@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c89b93355c424acab8405859bfb6656f }}/darkecstacy/joblink:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c89b93355c424acab8405859bfb6656f }}/joblink:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'linkme'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_b657b7c8ebf3485ca4ef7d0eddd9001b }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c89b93355c424acab8405859bfb6656f }}/darkecstacy/joblink:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c89b93355c424acab8405859bfb6656f }}/joblink:${{ github.sha }}'
