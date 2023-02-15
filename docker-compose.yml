@@ -14,7 +14,7 @@ services:
 
   web:
     build: . 
-    image: darkectacy/joblink:${APP_VERSION}
+    image: darkecstacy/joblink:${APP_VERSION}
     container_name: django-app
     command: sh -c "cd JobLink &&
                     pip3 install gunicorn &&

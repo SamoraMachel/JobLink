@@ -132,3 +132,5 @@ bin/
 lib
 
 
+# docker generated files and folders
+init.sql
