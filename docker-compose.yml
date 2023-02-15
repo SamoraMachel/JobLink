@@ -14,17 +14,21 @@ services:
 
   web:
     build: . 
+    image: darkectacy/joblink:${APP_VERSION}
     container_name: django-app
-    command: sh -c "python manage.py makemigrations &&
+    command: sh -c "cd JobLink &&
+                    pip3 install gunicorn &&
+                    python manage.py makemigrations &&
                     python manage.py migrate &&
-                    gunicorn microservice_sample_app.wsgi:application --bind 0.0.0.0:${APP_PORT}" 
+                    gunicorn JobLink.wsgi:application --bind 0.0.0.0:${APP_PORT}" 
     volumes:
     - static_volume:/home/app/joblink/static
     env_file: 
       - .env
-    image: django-joblink
-    expose: 
+    expose:
       - ${APP_PORT}
+    ports: 
+      - 5556:${APP_PORT}
     restart: "on-failure"
     depends_on: 
       - db
