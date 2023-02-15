@@ -1,0 +1,12 @@
+lib
+
+.github
+
+.git
+.gitignore
+
+bin
+
+README*.md
+*.md
+
