@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'linkme'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5D0CA3E08E7242BA923E82D8833B5FC3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7C10A98C83F745E8AFC5511A64F8EA10 }}
