@@ -18,4 +18,4 @@ RUN python manage.py makemigrations
 
 RUN python manage.py migrate
 
-RUN gunicorn JobLink.wsgi:application --bind 0.0.0.0
+
