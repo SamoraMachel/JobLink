@@ -81,7 +81,24 @@ WSGI_APPLICATION = 'JobLink.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb')
+    'default': {
+        'ENGINE': 'django_cockroachdb',
+        'NAME': os.getenv("ROACH_DATABASE"),
+        'USER': os.getenv("ROACH_USER"),
+        'PASSWORD': os.getenv("ROACH_PASSWORD"),
+        'HOST': os.getenv("ROACH_HOST"),
+        'PORT': os.getenv("ROACH_PORT"),
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+            
+        }
+    },
+    'localhost': {
+        'NAME': 'linkme',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'samora',
+        'PASSWORD': 'Machel112358#'
+    }
 }
 
 
