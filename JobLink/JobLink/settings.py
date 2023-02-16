@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os 
+from dotenv import load_dotenv
+import dj_database_url
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,8 +82,22 @@ WSGI_APPLICATION = 'JobLink.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django_cockroachdb',
+        'NAME': os.getenv("ROACH_DATABASE"),
+        'USER': os.getenv("ROACH_USER"),
+        'PASSWORD': os.getenv("ROACH_PASSWORD"),
+        'HOST': os.getenv("ROACH_HOST"),
+        'PORT': os.getenv("ROACH_PORT"),
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+            
+        }
+    },
+    'localhost': {
+        'NAME': 'linkme',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'samora',
+        'PASSWORD': 'Machel112358#'
     }
 }
 
