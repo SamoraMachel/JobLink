@@ -30,24 +30,6 @@ services:
     ports: 
       - 5556:${APP_PORT}
     restart: "on-failure"
-    depends_on: 
-      - db
-
-
-  db:
-    image: postgres:11-alpine 
-    container_name: postgres
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - postgres_data:/var/lib/postgresql/data/
-    environment: 
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
-      - PGPORT=${DB_PORT}
-      - POSTGRES_USER=${POSTGRES_USER}
-
-    restart: "on-failure"
 
 volumes:
-  postgres_data:
   static_volume:
