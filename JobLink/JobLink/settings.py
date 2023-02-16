@@ -82,6 +82,10 @@ WSGI_APPLICATION = 'JobLink.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',    
+    },
+    'roach_db': {
         'ENGINE': 'django_cockroachdb',
         'NAME': os.getenv("ROACH_DATABASE"),
         'USER': os.getenv("ROACH_USER"),
