@@ -10,4 +10,12 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+RUN pip3 install gunicorn
+
+WORKDIR /app/JobLink
+
+RUN python manage.py makemigrations
+
+RUN python manage.py migrate
+
+RUN gunicorn JobLink.wsgi:application --bind 0.0.0.0
