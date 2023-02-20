@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Installed Apps
+    'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
     
     # Custom Apps
@@ -85,13 +87,9 @@ WSGI_APPLICATION = 'JobLink.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',    
-    },
     'roach_db': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb'),
     
-    'localhost': {
+    'default': {
         'NAME': 'linkme',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'samora',
@@ -111,6 +109,19 @@ REST_FRAMEWORK = {
 
 }
 
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+
+# Djoser configuration
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
