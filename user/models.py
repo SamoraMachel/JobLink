@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
     date_joined = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=False)
     staff = models.BooleanField(default=False)
@@ -21,7 +21,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     linkedin = models.CharField(_("linkein"), max_length=150, null=True, blank=True)
     
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS: List[str] = ["email"]
+    REQUIRED_FIELDS: List[str] = []
 
     objects = PersonManager()
 

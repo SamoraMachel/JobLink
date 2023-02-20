@@ -42,8 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    # Installed Apps
     'djoser',
+    
+    # Custom Apps
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -85,18 +89,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',    
     },
-    'roach_db': {
-        'ENGINE': 'django_cockroachdb',
-        'NAME': os.getenv("ROACH_DATABASE"),
-        'USER': os.getenv("ROACH_USER"),
-        'PASSWORD': os.getenv("ROACH_PASSWORD"),
-        'HOST': os.getenv("ROACH_HOST"),
-        'PORT': os.getenv("ROACH_PORT"),
-        'OPTIONS': {
-            'sslmode': 'verify-full',
-            
-        }
-    },
+    'roach_db': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb'),
+    
     'localhost': {
         'NAME': 'linkme',
         'ENGINE': 'django.db.backends.mysql',
